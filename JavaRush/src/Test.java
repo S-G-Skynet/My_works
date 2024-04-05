@@ -1,29 +1,52 @@
+import java.io.*;
+import java.util.ArrayList;
+
+import java.util.ArrayList;
+
 public class Test {
     public static void main(String[] args) {
-        int[] array = {-2, 0, 1, 1, 4, 5, 7};
-        System.out.println(ternarySearch(array, 7));
-    }
-    public static int ternarySearch(int[] array, int element) {
-        int l = 0, r = array.length - 1;
-        while (l <= r) {
-            int h = (r - l)/3;
-            int m1 = l + h;
-            int m2 = r - h;
-            if(array[m1] == element)
-                return m1;
-            if(array[m2] == element)
-                return m2;
-            if(array[m1] < element && element < array[m2]) {
-                l = m1 + 1;
-                r = m2 - 1;
+        String s;
+        StringBuilder result = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new FileReader("test.txt"))) {
+            while ((s = br.readLine()) != null) {
+                if (s.startsWith("Total goals for")) {
+                    result.append(s).append("\n");
+                }
+                if (s.startsWith("Total goals by")) {
+                    result.append(s).append("\n");
+                }
+                if (s.startsWith("Mean goals per game for")) {
+                    result.append(s).append("\n");
+                }
+                if (s.startsWith("Mean goals per game by")) {
+                    result.append(s).append("\n");
+                }
+                if (s.startsWith("Goals on minute")) {
+                    result.append(s).append("\n");
+                }
+                if (s.startsWith("Goals on first")) {
+                    result.append(s).append("\n");
+                }
+                if (s.startsWith("Goals on last")) {
+                    result.append(s).append("\n");
+                }
+                if (s.startsWith("Score opens by")) {
+                    result.append(s).append("\n");
+                }
             }
-            else if(element < array[m1]) {
-                r = m1 - 1;
-            }
-            else {
-                l = m2 + 1;
-            }
+        } catch (IOException ex) {
+
+            System.out.println(ex.getMessage());
         }
-        return -1;
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("outTest.txt"))) {
+
+            bw.write(result.toString());
+        } catch (IOException ex) {
+
+            System.out.println(ex.getMessage());
+        }
     }
+
 }
+

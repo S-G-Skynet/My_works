@@ -3,7 +3,7 @@ package Algorithms;
 public class TernarySearch {
     public static void main(String[] args) {
         int[] array = {-2, 0, 1, 1, 4, 5, 7};
-        System.out.println(ternarySearch(array, 7));
+        System.out.println(ternarySearch(array, 1));
     }
     public static int ternarySearch(int[] array, int element) {
         int l = 0, r = array.length - 1;
@@ -28,4 +28,5 @@ public class TernarySearch {
         }
         return -1;
     }
+
 }

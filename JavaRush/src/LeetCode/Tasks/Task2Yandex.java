@@ -1,4 +1,4 @@
-package Tasks;
+package LeetCode.Tasks;
 
 import java.util.Arrays;
 import java.util.Scanner;
