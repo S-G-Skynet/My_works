@@ -1,52 +1,34 @@
-import java.io.*;
-import java.util.ArrayList;
+    import java.util.ArrayList;
+    import java.util.List;
+    import java.util.Scanner;
 
-import java.util.ArrayList;
+    public class Test {
+        static long count = 0;
+        public static void main(String[] args) {
+            Scanner scan = new Scanner(System.in);
+            int n = scan.nextInt();
+            int k = scan.nextInt();
+            generateNumbers("", n, k);
 
-public class Test {
-    public static void main(String[] args) {
-        String s;
-        StringBuilder result = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader("test.txt"))) {
-            while ((s = br.readLine()) != null) {
-                if (s.startsWith("Total goals for")) {
-                    result.append(s).append("\n");
+
+            System.out.println(count);
+        }
+
+        public static void generateNumbers(String number, long length, int k) {
+            if (number.length() == length) {
+                if(Long.parseLong(number) % k == 0)
+                    count++;
+                return;
+            }
+
+            if (number.isEmpty() || Character.getNumericValue(number.charAt(number.length() - 1)) % 2 == 0) {
+                for (int i = 1; i <= 9; i += 2) {
+                    generateNumbers(number + i, length, k);
                 }
-                if (s.startsWith("Total goals by")) {
-                    result.append(s).append("\n");
-                }
-                if (s.startsWith("Mean goals per game for")) {
-                    result.append(s).append("\n");
-                }
-                if (s.startsWith("Mean goals per game by")) {
-                    result.append(s).append("\n");
-                }
-                if (s.startsWith("Goals on minute")) {
-                    result.append(s).append("\n");
-                }
-                if (s.startsWith("Goals on first")) {
-                    result.append(s).append("\n");
-                }
-                if (s.startsWith("Goals on last")) {
-                    result.append(s).append("\n");
-                }
-                if (s.startsWith("Score opens by")) {
-                    result.append(s).append("\n");
+            } else {
+                for (int i = 0; i <= 8; i += 2) {
+                    generateNumbers(number + i, length, k);
                 }
             }
-        } catch (IOException ex) {
-
-            System.out.println(ex.getMessage());
-        }
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("outTest.txt"))) {
-
-            bw.write(result.toString());
-        } catch (IOException ex) {
-
-            System.out.println(ex.getMessage());
         }
     }
-
-}
-
